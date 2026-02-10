@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Invitation</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Comic Sans MS';
+background:linear-gradient(135deg,#ffecd2,#fcb69f);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+/* GIFT BOX BUTTON */
+
+#openBtn{
+font-size:28px;
+padding:20px 40px;
+border:none;
+border-radius:20px;
+background:#ff4081;
+color:white;
+cursor:pointer;
+animation:shake 1.2s infinite;
+}
+
+@keyframes shake{
+0%{transform:rotate(0);}
+25%{transform:rotate(3deg);}
+50%{transform:rotate(0);}
+75%{transform:rotate(-3deg);}
+100%{transform:rotate(0);}
+}
+
+/* CARD */
+
+#card{
+display:none;
+background:white;
+border-radius:25px;
+padding:20px;
+text-align:center;
+width:90%;
+max-width:420px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+animation:pop 0.8s ease;
+}
+
+@keyframes pop{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+/* RAINBOW TEXT */
+
+h1{
+background:linear-gradient(90deg,red,orange,yellow,green,blue,purple);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+/* INFO BOX */
+
+.info{
+background:#ffe082;
+padding:12px;
+border-radius:12px;
+margin:10px 0;
+font-size:18px;
+}
+
+/* BALLOONS */
+
+.balloon{
+position:absolute;
+bottom:-100px;
+width:40px;
+height:50px;
+border-radius:50%;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+from{transform:translateY(0);}
+to{transform:translateY(-120vh);}
+}
+
+/* CONFETTI */
+
+.confetti{
+position:absolute;
+width:10px;
+height:10px;
+animation:fall 3s linear infinite;
+}
+
+@keyframes fall{
+from{transform:translateY(-100px);}
+to{transform:translateY(110vh);}
+}
+
+/* FIREWORKS */
+
+.firework{
+position:absolute;
+font-size:30px;
+animation:boom 1s ease forwards;
+}
+
+@keyframes boom{
+from{transform:scale(0);}
+to{transform:scale(1.5); opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<button id="openBtn" onclick="showCard()">🎁 OPEN GIFT 🎁</button>
+
+<div id="card">
+
+<h1>🎉 Birthday Invitation 🎉</h1>
+
+<h2>Rahul Birthday Party 🥳</h2>
+
+<div class="info">📍 Venue: Rahul ka ghar</div>
+<div class="info">📅 Date: 27 February 2026</div>
+<div class="info">⏰ Time: 6 baje shaam</div>
+
+<h3>🎂 Aap sabhi ko hardik nimantran 🎂</h3>
+
+</div>
+
+<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+<script>
+
+function showCard(){
+
+document.getElementById("openBtn").style.display="none";
+document.getElementById("card").style.display="block";
+
+document.getElementById("music").play();
+
+createConfetti();
+createFireworks();
+
+}
+
+/* BALLOONS */
+
+for(let i=0;i<12;i++){
+let b=document.createElement("div");
+b.className="balloon";
+b.style.left=Math.random()*100+"%";
+b.style.background="hsl("+Math.random()*360+",80%,60%)";
+b.style.animationDuration=(4+Math.random()*4)+"s";
+document.body.appendChild(b);
+}
+
+/* CONFETTI */
+
+function createConfetti(){
+for(let i=0;i<70;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"%";
+c.style.background="hsl("+Math.random()*360+",80%,60%)";
+c.style.animationDuration=(2+Math.random()*3)+"s";
+document.body.appendChild(c);
+}
+}
+
+/* FIREWORKS */
+
+function createFireworks(){
+for(let i=0;i<10;i++){
+let f=document.createElement("div");
+f.className="firework";
+f.innerHTML="🎆";
+f.style.left=Math.random()*100+"%";
+f.style.top=Math.random()*80+"%";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+}
+}
+
+</script>
+
+</body>
+</html>
